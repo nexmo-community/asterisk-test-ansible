@@ -1,0 +1,15 @@
+# This is the password you'll use to connect to Asterisk
+asterisk_password: this_is_a_test_please_change_me_123
+
+# Your Nexmo credentials are used for the SIP connection
+nexmo_api_key: <NEXMO_API_KEY>
+nexmo_api_secret: <NEXMO_API_SECRET>
+
+# Define any extensions you need
+extensions:
+ - extension: 90210
+   endpoint: nexmo/14155550100
+   headers:
+       X-Badgers: Furry
+ - extension: 69100
+   endpoint: nexmo/442079460000

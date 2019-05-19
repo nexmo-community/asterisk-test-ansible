@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: no
+  become: true
+  vars:
+    ansible_user: root
+  tasks:
+    - name: Load Config
+      include_vars: file=config.yml name=config
+    - name: Install Asterisk
+      apt: name=asterisk state=present
+    - name: Create Asterisk configuration
+      template: src=config/{{item}}.conf dest=/etc/asterisk/{{item}}.conf
+      notify: restart asterisk
+      with_items:
+        - sip
+        - extensions
+        - users
+  handlers:
+    - name: restart asterisk
+      service:
+        name: asterisk
+        state: restarted
